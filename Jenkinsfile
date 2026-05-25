@@ -3,9 +3,9 @@ pipeline {
 
     // ─── Global environment variables ─────────────────────────────────────────
     environment {
-        GITHUB_REPO      = 'https://github.com/harshithld0141-rgb/JenkinsHelloWorld.git'
-        GITHUB_BRANCH    = 'master'
-        DOCKER_IMAGE     = 'myapp'
+        GITHUB_REPO      = 'https://github.com/harshithld0141-rgb/my-webook-repo.git'
+        GITHUB_BRANCH    = 'main'
+        DOCKER_IMAGE     = 'myappwebhook'
         DOCKER_TAG       = "${env.BUILD_NUMBER}"
         DOCKER_LATEST    = 'latest'
         EXPORT_DIR       = '/var/lib/jenkins/docker-exports'
@@ -60,8 +60,6 @@ pipeline {
             steps {
                 echo "🟢 Deploying container on this instance..."
                 sh """
-                    docker stop myapp-container 2>/dev/null || true
-                    docker rm   myapp-container 2>/dev/null || true
 
                     docker run -d \
                         --name myapp-container \
