@@ -60,9 +60,11 @@ pipeline {
             steps {
                 echo "🟢 Deploying container on this instance..."
                 sh """
+                    docker stop myappwebhook-container 2>/dev/null || true
+                    docker rm   myappwebhook-container 2>/dev/null || true
 
                     docker run -d \
-                        --name myapp-container \
+                        --name myappwebhook-container \
                         --restart unless-stopped \
                         -p 9090:8080 \
                         ${env.DOCKER_IMAGE}:${env.DOCKER_TAG}
